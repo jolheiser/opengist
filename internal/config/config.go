@@ -21,10 +21,11 @@ var C *config
 // Not using nested structs because the library
 // doesn't support dot notation in this case sadly
 type config struct {
-	LogLevel     string `yaml:"log-level" env:"OG_LOG_LEVEL"`
-	ExternalUrl  string `yaml:"external-url" env:"OG_EXTERNAL_URL"`
-	OpengistHome string `yaml:"opengist-home" env:"OG_OPENGIST_HOME"`
-	DBFilename   string `yaml:"db-filename" env:"OG_DB_FILENAME"`
+	LogLevel      string `yaml:"log-level" env:"OG_LOG_LEVEL"`
+	ExternalUrl   string `yaml:"external-url" env:"OG_EXTERNAL_URL"`
+	OpengistHome  string `yaml:"opengist-home" env:"OG_OPENGIST_HOME"`
+	DBFilename    string `yaml:"db-filename" env:"OG_DB_FILENAME"`
+	IndexFilename string `yaml:"index-filename" env:"OG_INDEX_FILENAME"`
 
 	SqliteJournalMode string `yaml:"sqlite.journal-mode" env:"OG_SQLITE_JOURNAL_MODE"`
 
@@ -59,6 +60,7 @@ func configWithDefaults() (*config, error) {
 	c.LogLevel = "warn"
 	c.OpengistHome = filepath.Join(homeDir, ".opengist")
 	c.DBFilename = "opengist.db"
+	c.IndexFilename = "opengist.bleve"
 
 	c.SqliteJournalMode = "WAL"
 
